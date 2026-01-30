@@ -1,0 +1,189 @@
+:root {
+  --primary: #e63946;       /* red */
+  --secondary: #fff1e6;     /* cream */
+  --dark: #1d1d1d;
+  --light: #ffffff;
+  --border: rgba(230, 57, 70, 0.25);
+}
+
+/* PAGE BACKGROUND */
+.profile-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(120deg, #fff7f2, #f0eeed);
+  padding: 40px;
+}
+
+/* MAIN CARD */
+.profile-card {
+  width: 420px;
+  background: linear-gradient(180deg, #ffffff, #fff7f2);
+  border-radius: 22px;
+  padding: 28px;
+  border: 2px solid var(--border);
+  box-shadow: 0 25px 60px rgba(230, 57, 70, 0.15);
+  position: relative;
+  overflow: hidden;
+  transition: 0.35s ease;
+}
+
+
+
+/* HOVER EFFECT */
+.profile-card:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 40px 80px rgba(51, 12, 16, 0.25);
+}
+
+/* HEADER */
+.profile-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+/* AVATAR */
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #ff8fa3);
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 12px;
+  transition: 0.3s;
+}
+
+.profile-card:hover .avatar {
+  transform: scale(1.05);
+}
+
+.profile-header h2 {
+  margin: 6px 0 4px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.profile-header p {
+  font-size: 13px;
+  color: #777;
+}
+
+/* ROLE BADGE */
+.role-badge {
+  display: inline-block;
+  background: rgb(215, 29, 29);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 8px 0;
+  box-shadow: 0 6px 16px rgba(230, 57, 70, 0.3);
+}
+
+/* STATS */
+.stats-row {
+  display: flex;
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.stat {
+  flex: 1;
+  background: var(--secondary);
+  border-radius: 14px;
+  padding: 14px 10px;
+  text-align: center;
+  border: 1.5px solid var(--border);
+  transition: 0.3s;
+  position: relative;
+}
+
+.stat:hover {
+  transform: translateY(-6px);
+  background: #ffe0d2;
+}
+
+.stat h3 {
+  font-size: 24px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.stat span {
+  font-size: 12px;
+  color: #555;
+}
+
+/* COLOR VARIANTS */
+.stat.donated {
+  background: #eafff1;
+  border-color: rgba(40, 167, 69, 0.3);
+}
+
+.stat.donated h3 {
+  color: #28a745;
+}
+
+.stat.expired {
+  background: #ffeaea;
+  border-color: rgba(220, 53, 69, 0.3);
+}
+
+.stat.expired h3 {
+  color: #dc3545;
+}
+
+/* DETAILS SECTION */
+.details {
+  margin-top: 10px;
+  background: rgba(255, 241, 230, 0);
+  border-radius: 14px;
+  padding: 14px;
+  border: 1px solid var(--border);
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 14px;
+  border-bottom: 1px dashed rgba(230, 57, 70, 0.15);
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-item span {
+  color: #1d1c1c;
+  font-size: 12px;
+}
+
+.detail-item p {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+/* LOADING */
+.loading {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
