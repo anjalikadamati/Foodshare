@@ -2,6 +2,7 @@ from flask import Flask
 from config import Config
 from extensions import db,jwt, mail
 from flask_cors import CORS
+import os
 from routes.auth import register_user, login_user
 from routes.user_profile import get_profile_stats
 from routes.food_listings import create_food_listing, get_available_food_listings, get_my_food_listings, update_food_listing, delete_food_listing
@@ -18,6 +19,7 @@ CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
 app.config.from_object(Config)
 app.config["JWT_ERROR_MESSAGE_KEY"] = "error"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 587
@@ -93,4 +95,4 @@ def profile_stats():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
