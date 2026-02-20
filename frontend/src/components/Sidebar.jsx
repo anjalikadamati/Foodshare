@@ -25,7 +25,7 @@ export default function Sidebar({ role }) {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user");
     alert("Logged out successfully 👋");
-    window.location.href = "/"; // ✅ redirect to home page
+    window.location.href = "/"; 
   };
 
 

@@ -5,9 +5,9 @@ from models.food_listing import FoodListing
 from models.donation_request import DonationRequest
 
 
-@jwt_required()   # ✅ THIS WAS MISSING (MAIN FIX)
+@jwt_required() 
 def get_profile_stats():
-    user_id = get_jwt_identity()   # no need int()
+    user_id = get_jwt_identity() 
     role = get_jwt().get("role")
 
     user = User.query.get(user_id)
@@ -15,7 +15,6 @@ def get_profile_stats():
     if not user:
         return jsonify({"error": "User not found"}), 404
 
-    # ✅ PROVIDER
     if role == "provider":
         total = FoodListing.query.filter_by(provider_id=user_id).count()
         donated = FoodListing.query.filter_by(provider_id=user_id, status="Donated").count()
@@ -35,7 +34,7 @@ def get_profile_stats():
             }
         })
 
-    # ✅ RECEIVER
+
     total_requests = DonationRequest.query.filter_by(receiver_id=user_id).count()
     accepted = DonationRequest.query.filter_by(receiver_id=user_id, status="Accepted").count()
     rejected = DonationRequest.query.filter_by(receiver_id=user_id, status="Rejected").count()

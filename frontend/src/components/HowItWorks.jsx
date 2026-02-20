@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import "../styles/Howitworks.css"
 
-// Simple scroll animation hook
 function useScrollAnimation() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);

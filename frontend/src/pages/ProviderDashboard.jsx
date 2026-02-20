@@ -96,7 +96,6 @@ export default function ProviderDashboard() {
       return;
     }
 
-    // Client-side validation (same as before)...
     const requiredFields = ["food_item_name", "quantity", "expiry_datetime", "pickup_address", "contact_person_name", "contact_person_phone"];
     for (const field of requiredFields) {
         if (!formData[field] || formData[field].toString().trim() === "") {
@@ -125,13 +124,10 @@ export default function ProviderDashboard() {
       const res = await createFoodListing(formData);
       console.log("🔥 createFoodListing response:", res);
 
-      // If backend returns created listing, insert it into local state
       const created = res?.listing;
       if (created) {
-        // ensure we show provider's listing immediately
         setListings(prev => [created, ...prev]);
       } else {
-        // fallback: refresh from server
         await fetchListings();
       }
 
@@ -158,8 +154,6 @@ export default function ProviderDashboard() {
 
     try {
       await deleteFoodListing(listingId);
-
-      // ✅ remove only deleted item from UI (NO FULL REFRESH)
       setListings(prev => prev.filter(item => item.id !== listingId));
 
       alert("Food listing deleted successfully!");

@@ -2,9 +2,6 @@ from flask import Flask
 from config import Config
 from extensions import db,jwt, mail
 from flask_cors import CORS
-
-
-# IMPORT ROUTES (VERY IMPORTANT)
 from routes.auth import register_user, login_user
 from routes.user_profile import get_profile_stats
 from routes.food_listings import create_food_listing, get_available_food_listings, get_my_food_listings, update_food_listing, delete_food_listing
@@ -26,7 +23,7 @@ app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
 app.config["MAIL_USERNAME"] = "anjukadamati@gmail.com"
-app.config["MAIL_PASSWORD"] = "dnyc ggss qkbr oulf"  # NOT normal password
+app.config["MAIL_PASSWORD"] = "dnyc ggss qkbr oulf" 
 mail.init_app(app)
 
 

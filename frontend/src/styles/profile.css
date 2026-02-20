@@ -1,12 +1,11 @@
 :root {
-  --primary: #e63946;       /* red */
-  --secondary: #fff1e6;     /* cream */
+  --primary: #e63946;     
+  --secondary: #fff1e6;    
   --dark: #1d1d1d;
   --light: #ffffff;
   --border: rgba(230, 57, 70, 0.25);
 }
 
-/* PAGE BACKGROUND */
 .profile-container {
   min-height: 100vh;
   display: flex;
@@ -16,7 +15,6 @@
   padding: 40px;
 }
 
-/* MAIN CARD */
 .profile-card {
   width: 420px;
   background: linear-gradient(180deg, #ffffff, #fff7f2);
@@ -29,21 +27,16 @@
   transition: 0.35s ease;
 }
 
-
-
-/* HOVER EFFECT */
 .profile-card:hover {
   transform: translateY(-10px) scale(1.01);
   box-shadow: 0 40px 80px rgba(51, 12, 16, 0.25);
 }
 
-/* HEADER */
 .profile-header {
   text-align: center;
   margin-bottom: 22px;
 }
 
-/* AVATAR */
 .avatar {
   width: 80px;
   height: 80px;
@@ -75,7 +68,6 @@
   color: #777;
 }
 
-/* ROLE BADGE */
 .role-badge {
   display: inline-block;
   background: rgb(215, 29, 29);
@@ -88,7 +80,6 @@
   box-shadow: 0 6px 16px rgba(230, 57, 70, 0.3);
 }
 
-/* STATS */
 .stats-row {
   display: flex;
   gap: 12px;
@@ -123,7 +114,6 @@
   color: #555;
 }
 
-/* COLOR VARIANTS */
 .stat.donated {
   background: #eafff1;
   border-color: rgba(40, 167, 69, 0.3);
@@ -142,7 +132,6 @@
   color: #dc3545;
 }
 
-/* DETAILS SECTION */
 .details {
   margin-top: 10px;
   background: rgba(255, 241, 230, 0);
@@ -174,7 +163,6 @@
   color: var(--dark);
 }
 
-/* LOADING */
 .loading {
   font-size: 18px;
   font-weight: 600;

@@ -4,7 +4,7 @@ import globalFoodWaste from "../assets/global-food-waste.png";
 import worldHunger from "../assets/world-hunger.png";
 import "../styles/Helping.css"
 
-// Simple scroll animation hook
+
 function useScrollAnimation() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);

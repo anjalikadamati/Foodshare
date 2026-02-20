@@ -2,6 +2,7 @@
 from flask import request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from models.food_listing import FoodListing
+from models.donation_request import DonationRequest
 from extensions import db, mail
 from datetime import datetime, timezone
 from flask_mail import Message
@@ -9,7 +10,6 @@ from models.user import User
 
 
 def _parse_expiry(expiry_str):
-    # try with seconds then without
     try:
         return datetime.strptime(expiry_str, "%Y-%m-%dT%H:%M:%S").replace(tzinfo=timezone.utc)
     except ValueError:
@@ -50,7 +50,6 @@ def send_food_notification(listing):
 
 @jwt_required()
 def create_food_listing():
-    # Debug: print authorization header + identity
     print("🔥 create_food_listing called")
     print("🔥 AUTH HEADER:", request.headers.get("Authorization"))
     identity = get_jwt_identity()
@@ -109,10 +108,9 @@ def create_food_listing():
         import threading
         threading.Thread(target=send_food_notification, args=(listing,)).start()
 
-        # Log created listing id and provider
+
         print(f"🔥 Created listing id={listing.id} provider_id={listing.provider_id} status={listing.status}")
 
-        # Return the full created listing object (useful for frontend)
         return jsonify({
             "message": "Food listing created successfully",
             "listing": {
@@ -140,7 +138,7 @@ def get_available_food_listings():
     update_expired_listings()
 
     search = request.args.get("search", "")
-    sort = request.args.get("sort", "latest")   # ✅ NEW
+    sort = request.args.get("sort", "latest")  
 
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 6))
@@ -150,7 +148,6 @@ def get_available_food_listings():
     if search:
         query = query.filter(FoodListing.food_item_name.ilike(f"%{search}%"))
 
-    # ✅ sorting
     if sort == "oldest":
         query = query.order_by(FoodListing.created_at.asc())
     elif sort == "expiry":
@@ -184,10 +181,6 @@ def get_available_food_listings():
     }), 200
 
 
-
-
-
-
 @jwt_required()
 def get_my_food_listings():
     update_expired_listings()
@@ -195,28 +188,25 @@ def get_my_food_listings():
     provider_id = int(get_jwt_identity())
 
     search = request.args.get("search", "")
-    status_filter = request.args.get("status", "")   # ✅ NEW
-    sort = request.args.get("sort", "latest")        # ✅ NEW
+    status_filter = request.args.get("status", "")   
+    sort = request.args.get("sort", "latest")        
 
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 6))
 
     query = FoodListing.query.filter_by(provider_id=provider_id)
 
-    # ✅ search filter
     if search:
         query = query.filter(FoodListing.food_item_name.ilike(f"%{search}%"))
 
-    # ✅ status filter
     if status_filter:
         query = query.filter(FoodListing.status == status_filter)
 
-    # ✅ sorting
     if sort == "oldest":
         query = query.order_by(FoodListing.created_at.asc())
     elif sort == "expiry":
         query = query.order_by(FoodListing.expiry_datetime.asc())
-    else:  # latest default
+    else:  
         query = query.order_by(FoodListing.created_at.desc())
 
     pagination = query.paginate(page=page, per_page=limit, error_out=False)
@@ -245,9 +235,6 @@ def get_my_food_listings():
     }), 200
 
 
-
-from models.donation_request import DonationRequest
-
 @jwt_required()
 def delete_food_listing(listing_id):
     provider_id = int(get_jwt_identity())
@@ -261,7 +248,6 @@ def delete_food_listing(listing_id):
         return jsonify({"error": "Listing not found"}), 404
 
     try:
-        # ✅ SAFE delete (NO BULK DELETE)
         requests = DonationRequest.query.filter_by(listing_id=listing.id).all()
         for r in requests:
             db.session.delete(r)
@@ -276,10 +262,6 @@ def delete_food_listing(listing_id):
         print("🔥 DELETE ERROR:", e)
         return jsonify({"error": "Delete failed"}), 500
 
-
-
-
-from datetime import datetime
 
 def update_expired_listings():
     now = datetime.now()   
@@ -342,7 +324,6 @@ def update_food_listing(listing_id):
         if "contact_person_phone" in data:
             listing.contact_person_phone = data["contact_person_phone"]
 
-        # Update status if expiry changed
         now = datetime.now(timezone.utc)
         if listing.expiry_datetime < now and listing.status == "Available":
             listing.status = "Expired"

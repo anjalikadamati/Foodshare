@@ -1,9 +1,4 @@
-/* ===============================
-   DASHBOARD CSS VARIABLES
-================================ */
-
 :root {
-  /* Colors */
   --primary-red: #dc2626;
   --primary-red-dark: #b91c1c;
   --primary-red-light: #fca5a5;
@@ -29,13 +24,11 @@
   --error-red: #ef4444;
   --error-red-light: #fee2e2;
 
-  /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
-  /* Border Radius */
   --radius-sm: 0.25rem;
   --radius-md: 0.375rem;
   --radius-lg: 0.5rem;
@@ -43,7 +36,6 @@
   --radius-2xl: 1rem;
   --radius-full: 9999px;
 
-  /* Spacing */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -54,7 +46,6 @@
   --space-10: 2.5rem;
   --space-12: 3rem;
 
-  /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
@@ -65,15 +56,11 @@
   --font-size-3xl: 1.875rem;
   --font-size-4xl: 2.25rem;
 
-  /* Transitions */
   --transition-fast: 150ms ease-in-out;
   --transition-normal: 250ms ease-in-out;
   --transition-slow: 350ms ease-in-out;
 }
 
-/* ===============================
-   BASE STYLES
-================================ */
 
 * {
   box-sizing: border-box;
@@ -87,10 +74,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-/* ===============================
-   DASHBOARD LAYOUT
-================================ */
 
 .dashboard-container {
   display: flex;
@@ -111,9 +94,6 @@ body {
   animation: slideInUp 0.6s ease-out;
 }
 
-/* ===============================
-   ANIMATIONS
-================================ */
 
 @keyframes slideInUp {
   from {
@@ -157,14 +137,6 @@ body {
   }
 }
 
-
-
-
-
-/* ===============================
-   STATS GRID
-================================ */
-
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -192,20 +164,17 @@ body {
   color: #c02632;
 }
 
-/* Action buttons container */
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* Edit & Delete Buttons */
 .action-buttons {
   display: flex;
   gap: 8px;
 }
 
-/* Common button style */
 .action-btn {
   border: none;
   outline: none;
@@ -219,7 +188,7 @@ body {
   justify-content: center;
 }
 
-/* Edit Button */
+
 .edit-btn {
   background: rgba(59, 130, 246, 0.15); /* blue light */
   color: #2563eb;
@@ -231,7 +200,6 @@ body {
   transform: scale(1.05);
 }
 
-/* Delete Button */
 .delete-btn {
   background: rgba(239, 68, 68, 0.15); /* red light */
   color: #dc2626;
@@ -248,10 +216,6 @@ body {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
-
-/* ===============================
-   ACTION CARDS
-================================ */
 
 .actions-grid {
   display: grid;

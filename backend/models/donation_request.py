@@ -9,7 +9,7 @@ class DonationRequest(db.Model):
     listing_id = db.Column(db.Integer, db.ForeignKey("food_listing.id"), nullable=False)
     receiver_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
-    status = db.Column(db.String(30), default="Pending")  # Pending / Accepted / Rejected
+    status = db.Column(db.String(30), default="Pending")  
 
     created_at = db.Column(
         db.DateTime,

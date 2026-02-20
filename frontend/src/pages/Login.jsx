@@ -31,13 +31,10 @@ export default function Login() {
         return;
       }
 
-      // ✅ STORE AUTH DATA
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("role", data.user.role);
       localStorage.setItem("user", JSON.stringify(data.user));
 
-
-      // ✅ REDIRECT BASED ON ROLE
       if (data.user.role === "provider") {
         navigate("/provider/dashboard");
       } else {

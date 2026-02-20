@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 
-/* CSS Variables */
 :root {
   --primary: #b91c1c;
   --primary-light: #fef2f2;
@@ -13,16 +12,14 @@
   --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
 }
 
-/* Reset */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: 'DM Sans', sans-serif;
@@ -31,7 +28,7 @@ body {
   line-height: 1.6;
 }
 
-/* Container */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -39,23 +36,27 @@ body {
 }
 
 
-/* ================================
-   ANIMATIONS
-   ================================ */
-
-/* Fade up animation for scroll */
-.animate-on-scroll {
+.animate-on-scroll,
+.helping-header,
+.features-header,
+.how-it-works-header,
+.footer,
+.auth-card {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.animate-on-scroll.visible {
+.animate-on-scroll.visible,
+.helping-header.visible,
+.features-header.visible,
+.how-it-works-header.visible,
+.footer.visible,
+.auth-card.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Navbar fade in */
 .navbar {
   opacity: 0;
   transform: translateY(-20px);
@@ -67,46 +68,28 @@ body {
   transform: translateY(0);
 }
 
-/* Hero animations */
-.hero-content {
+
+.hero-content,
+.hero-image {
   opacity: 0;
-  transform: translateX(-40px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.hero-content.visible {
-  opacity: 1;
-  transform: translateX(0);
+.hero-content {
+  transform: translateX(-40px);
 }
 
 .hero-image {
-  opacity: 0;
   transform: translateX(40px);
-  transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+  transition-delay: 0.2s;
 }
 
+.hero-content.visible,
 .hero-image.visible {
   opacity: 1;
   transform: translateX(0);
 }
 
-/* Section header animations */
-.helping-header,
-.features-header,
-.how-it-works-header {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.helping-header.visible,
-.features-header.visible,
-.how-it-works-header.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Helping items slide in */
 .helping-item {
   opacity: 0;
   transform: translateX(-40px);
@@ -122,41 +105,41 @@ body {
   transform: translateX(0);
 }
 
-/* Feature card animations */
-.feature-card {
-  opacity: 0;
-  transform: translateY(40px) scale(0.95);
-  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+.helping-item-circle {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.feature-card.visible {
+.helping-item:hover .helping-item-circle {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 12px rgba(185, 28, 28, 0.15);
+}
+
+
+.feature-card,
+.how-card {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+}
+
+.feature-card.visible,
+.how-card.visible {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
-.feature-card:hover {
-  transform: translateY(-8px) scale(1.02);
+.feature-card:hover,
+.how-card:hover,
+.role-card:hover {
+  transform: translateY(-6px) scale(1.02);
   box-shadow: var(--shadow-lg);
 }
 
-/* How it works card animations */
-.how-card {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+.role-card {
+  transition: transform 0.3s ease;
 }
 
-.how-card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
 
-.how-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
-/* CTA section animation */
 .cta .container {
   opacity: 0;
   transform: scale(0.95);
@@ -168,33 +151,8 @@ body {
   transform: scale(1);
 }
 
-/* Footer animation */
-.footer {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.footer.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Auth card animation */
-.auth-card {
-  opacity: 0;
-  transform: translateY(20px) scale(0.98);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.auth-card.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* Button hover effects */
 .btn {
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn:hover {
@@ -210,7 +168,7 @@ body {
   box-shadow: 0 12px 35px rgba(185, 28, 28, 0.35);
 }
 
-/* Link hover underline animation */
+
 .navbar-links a,
 .footer-links a {
   position: relative;
@@ -218,7 +176,7 @@ body {
 
 .navbar-links a::after,
 .footer-links a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -233,47 +191,18 @@ body {
   width: 100%;
 }
 
-/* Image hover effects */
-.helping-item-circle {
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.helping-item:hover .helping-item-circle {
-  transform: scale(1.05);
-  box-shadow: 0 0 0 12px rgba(185, 28, 28, 0.15);
-}
-
-/* Role card animations */
-.role-card {
-  transition: all 0.3s ease;
-}
-
-.role-card:hover {
-  transform: translateY(-4px);
-}
-
-/* Pulse animation for hero blob */
 @keyframes pulse {
-  0%, 100% {
-    transform: translate(-50%, -45%) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -45%) scale(1.03);
-  }
+  0%, 100% { transform: translate(-50%, -45%) scale(1); }
+  50% { transform: translate(-50%, -45%) scale(1.03); }
 }
 
 .hero-blob {
   animation: pulse 4s ease-in-out infinite;
 }
 
-/* Floating animation */
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 .feature-icon {
@@ -284,7 +213,7 @@ body {
   animation: float 2s ease-in-out infinite;
 }
 
-/* Step number animation */
+
 .how-step-number {
   transition: transform 0.3s ease, background 0.3s ease;
 }
@@ -294,7 +223,7 @@ body {
   background: #991b1b;
 }
 
-/* Logo hover */
+
 .navbar-logo,
 .footer-logo {
   transition: transform 0.3s ease;
@@ -305,18 +234,16 @@ body {
   transform: scale(1.03);
 }
 
-/* Social icon hover */
 .footer-social a {
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .footer-social a:hover {
   transform: translateY(-3px);
 }
 
-/* Newsletter button hover */
 .footer-newsletter-form button {
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .footer-newsletter-form button:hover {

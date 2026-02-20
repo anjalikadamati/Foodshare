@@ -53,7 +53,7 @@ export default function ProviderRequests({ refreshTrigger = 0, onRequestUpdate }
       fetchRequests();
 
       if (onRequestUpdate) {
-        onRequestUpdate(); // 🔥 refresh provider listings
+        onRequestUpdate();
       }
 
     } catch (err) {

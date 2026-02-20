@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import "../styles/Features.css"
 
-// Simple scroll animation hook
 function useScrollAnimation() {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -18,7 +17,7 @@ function useScrollAnimation() {
   return { ref, visible };
 }
 
-// Feature data
+
 const features = [
   {
     icon: "user",
@@ -52,7 +51,6 @@ const features = [
   },
 ];
 
-// Icon component
 function Icon({ type }) {
   const icons = {
     user: <><circle cx="12" cy="8" r="4" /><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2" /></>,
@@ -70,7 +68,7 @@ function Icon({ type }) {
   );
 }
 
-// Feature card component
+
 function FeatureCard({ icon, title, description, delay }) {
   const { ref, visible } = useScrollAnimation();
 

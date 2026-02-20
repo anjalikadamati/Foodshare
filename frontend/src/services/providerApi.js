@@ -31,8 +31,6 @@ export async function createFoodListing(formData) {
   if (!res.ok) {
     throw new Error(data?.error || "Failed to create listing");
   }
-
-  // return created listing object (if backend returned it)
   return data;
 }
 

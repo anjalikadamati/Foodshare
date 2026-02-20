@@ -64,11 +64,7 @@ export default function ReceiverDashboard() {
       }
 
       alert("Food request sent successfully ✅");
-
-      // Update the food list to remove the requested item
       fetchFoodList();
-
-      // setRefreshTrigger(prev => prev + 1);
 
     } catch (err) {
       alert("Server error ❌");
@@ -86,28 +82,34 @@ export default function ReceiverDashboard() {
         <div className="dashboard-section">
           <h2>Available Food Listings 🍱</h2>
 
-          <div className="search-box">
-            <input
-              type="text"
-              placeholder="Search food..."
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-                setPage(1);
-              }}
-            />
+          <div className="search-filter-row">
+            <div className="search-box">
+              <input
+                type="text"
+                placeholder="Search food..."
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setPage(1);
+                }}
+              />
+            </div>
+
+            <div className="filter-bar">
+              <select
+                value={sort}
+                onChange={(e) => {
+                  setSort(e.target.value);
+                  setPage(1);
+                }}
+              >
+                <option value="latest">Latest</option>
+                <option value="oldest">Oldest</option>
+                <option value="expiry">Expiring Soon</option>
+              </select>
+            </div>
           </div>
 
-          <div className="filter-bar">
-            <select value={sort} onChange={(e) => {
-              setSort(e.target.value);
-              setPage(1);
-            }}>
-              <option value="latest">Latest</option>
-              <option value="oldest">Oldest</option>
-              <option value="expiry">Expiring Soon</option>
-            </select>
-          </div>
 
 
 

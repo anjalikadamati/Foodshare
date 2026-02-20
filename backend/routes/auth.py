@@ -6,25 +6,20 @@ from extensions import db
 
 def register_user():
     data = request.get_json()
-
-    # 1️⃣ Read data from request
     name = data.get("name")
     email = data.get("email")
     password = data.get("password")
     role = data.get("role")
 
-    # 2️⃣ Basic validation
     if not all([name, email, password, role]):
         return jsonify({"error": "All fields are required"}), 400
 
     if role not in ["provider", "receiver"]:
         return jsonify({"error": "Invalid role"}), 400
 
-    # 3️⃣ Check if user already exists
     if User.query.filter_by(email=email).first():
         return jsonify({"error": "Email already registered"}), 400
 
-    # 4️⃣ Create user
     user = User(
         name=name,
         email=email,
@@ -36,7 +31,6 @@ def register_user():
 
     user.set_password(password)
 
-    # 5️⃣ Save to DB
     db.session.add(user)
     db.session.commit()
 
@@ -48,24 +42,21 @@ def login_user():
     email = data.get("email")
     password = data.get("password")
 
-    # 1️⃣ Validation
     if not email or not password:
         return jsonify({"error": "Email and password required"}), 400
 
-    # 2️⃣ Find user
     user = User.query.filter_by(email=email).first()
 
     if not user:
         return jsonify({"error": "Invalid email or password"}), 401
 
-    # 3️⃣ Check password
     if not user.check_password(password):
         return jsonify({"error": "Invalid email or password"}), 401
 
     access_token = create_access_token(
-    identity=str(user.id),        # ✅ subject MUST be string
+    identity=str(user.id),       
     additional_claims={
-        "role": user.role         # ✅ role stored separately
+        "role": user.role     
     }
 )
 
@@ -83,8 +74,8 @@ def login_user():
 
 @jwt_required()
 def get_current_user():
-    user_id = get_jwt_identity()      # comes from access_token identity
-    claims = get_jwt()                # contains role
+    user_id = get_jwt_identity()      
+    claims = get_jwt()              
 
     user = User.query.get(user_id)
 
