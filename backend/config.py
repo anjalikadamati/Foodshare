@@ -1,6 +1,10 @@
+import os
+
 class Config:
-    SECRET_KEY = "foodshare-secret-key"
-    JWT_SECRET_KEY = "super-secret-jwt-key"
-    JWT_ACCESS_TOKEN_EXPIRES = False
-    SQLALCHEMY_DATABASE_URI = "sqlite:///foodshare.db"
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = os.getenv("SECRET_KEY")
+    JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+    JWT_ACCESS_TOKEN_EXPIRES = False
+
+
