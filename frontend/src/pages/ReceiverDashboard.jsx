@@ -12,6 +12,8 @@ export default function ReceiverDashboard() {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
 
+  const API = import.meta.env.VITE_API_URL;
+
 
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -19,7 +21,7 @@ export default function ReceiverDashboard() {
     const token = localStorage.getItem("access_token");
 
     fetch(
-      `http://127.0.0.1:5000/food/available?search=${search}&sort=${sort}&page=${page}&limit=6`,
+      `${API}/food/available?search=${search}&sort=${sort}&page=${page}&limit=6`,
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -47,7 +49,7 @@ export default function ReceiverDashboard() {
     const token = localStorage.getItem("access_token");
 
     try {
-      const res = await fetch("http://127.0.0.1:5000/donation/request", {
+      const res = await fetch(`${API}/donation/request`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -5,6 +5,8 @@ import "../styles/auth.css";
 export default function Signup() {
   const navigate = useNavigate();
 
+  const API = import.meta.env.VITE_API_URL;
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -28,7 +30,7 @@ export default function Signup() {
     setSuccess("");
 
     try {
-      const res = await fetch("http://127.0.0.1:5000/auth/register", {
+      const res = await fetch(`${API}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

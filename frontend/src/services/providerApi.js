@@ -1,5 +1,4 @@
-// services/providerApi.js
-const API_URL = "http://127.0.0.1:5000";
+const API = import.meta.env.VITE_API_URL;
 
 function getAuthHeaders() {
   const token = localStorage.getItem("access_token");
@@ -7,7 +6,7 @@ function getAuthHeaders() {
 }
 
 export async function fetchProviderListings() {
-  const res = await fetch(`${API_URL}/food/my-listings`, {
+  const res = await fetch(`${API}/food/my-listings`, {
     headers: getAuthHeaders()
   });
 
@@ -20,7 +19,7 @@ export async function fetchProviderListings() {
 }
 
 export async function createFoodListing(formData) {
-  const res = await fetch(`${API_URL}/food/create`, {
+  const res = await fetch(`${API}/food/create`, {
     method: "POST",
     headers: getAuthHeaders(),
     body: JSON.stringify(formData)
@@ -35,7 +34,7 @@ export async function createFoodListing(formData) {
 }
 
 export async function deleteFoodListing(listingId) {
-  const res = await fetch(`${API_URL}/food/delete/${listingId}`, {
+  const res = await fetch(`${API}/food/delete/${listingId}`, {
     method: "DELETE",
     headers: getAuthHeaders()
   });

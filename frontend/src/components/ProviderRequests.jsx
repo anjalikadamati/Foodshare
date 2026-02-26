@@ -4,11 +4,13 @@ export default function ProviderRequests({ refreshTrigger = 0, onRequestUpdate }
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const API = import.meta.env.VITE_API_URL;
+
   const user = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("access_token");
 
   const fetchRequests = () => {
-    fetch(`http://127.0.0.1:5000/provider/${user.id}/requests`, {
+    fetch(`${API}/provider/${user.id}/requests`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -30,7 +32,7 @@ export default function ProviderRequests({ refreshTrigger = 0, onRequestUpdate }
 
   const updateRequest = async (requestId, status) => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/donation/request/update", {
+      const res = await fetch(`${API}/donation/request/update`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -5,8 +5,10 @@ export default function Profile() {
   const [data, setData] = useState(null);
   const token = localStorage.getItem("access_token");
 
+  const API = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/user/profile-stats", {
+    fetch(`${API}/user/profile-stats`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

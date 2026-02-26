@@ -4,10 +4,12 @@ export default function ReceiverRequests({ refreshTrigger = 0 }) {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const API = import.meta.env.VITE_API_URL;
+
   const token = localStorage.getItem("access_token");
 
   const fetchRequests = () => {
-    fetch("http://127.0.0.1:5000/receiver/my-requests", {
+    fetch(`${API}/receiver/my-requests`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

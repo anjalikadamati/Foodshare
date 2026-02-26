@@ -22,6 +22,8 @@ export default function ProviderDashboard() {
 
   const [showModal, setShowModal] = useState(false);
 
+  const API = import.meta.env.VITE_API_URL;
+
   const [formData, setFormData] = useState({
     food_item_name: "",
     quantity: "",
@@ -62,7 +64,7 @@ export default function ProviderDashboard() {
   const fetchListings = async () => {
     try {
       const res = await fetch(
-        `http://127.0.0.1:5000/food/my-listings?search=${search}&status=${statusFilter}&sort=${sort}&page=${page}&limit=6`,
+        `${API}/food/my-listings?search=${search}&status=${statusFilter}&sort=${sort}&page=${page}&limit=6`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`
